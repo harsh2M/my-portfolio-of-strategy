@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Harsh Mayank Modi — Growth Marketer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg: #0E1526;
+    --bg-alt: #141D33;
+    --bg-card: #17213A;
+    --line: rgba(242,240,233,0.10);
+    --line-strong: rgba(242,240,233,0.18);
+    --ink: #F2F0E9;
+    --ink-muted: #939CB4;
+    --ink-faint: #5E6785;
+    --gold: #E8A33D;
+    --gold-soft: rgba(232,163,61,0.14);
+    --teal: #33C6B7;
+    --teal-soft: rgba(51,198,183,0.14);
+    --font-display: 'Space Grotesk', sans-serif;
+    --font-body: 'Inter', sans-serif;
+    --font-mono: 'JetBrains Mono', monospace;
+  }
+
+  *{ box-sizing: border-box; margin:0; padding:0; }
+  html{ scroll-behavior: smooth; }
+  body{
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--font-body);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+  body::before{
+    content:"";
+    position: fixed; inset:0;
+    background:
+      radial-gradient(ellipse 900px 500px at 85% -10%, rgba(232,163,61,0.09), transparent 60%),
+      radial-gradient(ellipse 700px 500px at -10% 30%, rgba(51,198,183,0.07), transparent 60%);
+    pointer-events:none;
+    z-index:0;
+  }
+  a{ color: inherit; }
+  img{ max-width:100%; display:block; }
+  .wrap{ max-width: 1100px; margin: 0 auto; padding: 0 32px; position:relative; z-index:1; }
+
+  .eyebrow{
+    font-family: var(--font-mono);
+    font-size: 12px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--teal);
+    display:flex; align-items:center; gap:10px;
+  }
+  .eyebrow::before{
+    content:""; width:16px; height:1px; background: var(--teal); display:inline-block;
+  }
+
+  /* NAV */
+  header.nav{
+    position: sticky; top:0; z-index: 50;
+    background: rgba(14,21,38,0.82);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--line);
+  }
+  .nav-inner{
+    max-width:1100px; margin:0 auto; padding: 18px 32px;
+    display:flex; justify-content:space-between; align-items:center;
+  }
+  .brand{
+    font-family: var(--font-display); font-weight:600; font-size:17px; letter-spacing:0.01em;
+  }
+  .brand span{ color: var(--gold); }
+  nav.links{ display:flex; gap:28px; font-size:14px; color: var(--ink-muted); }
+  nav.links a{ text-decoration:none; transition: color .15s ease; }
+  nav.links a:hover{ color: var(--ink); }
+  .nav-cta{
+    font-family: var(--font-mono); font-size: 12.5px;
+    border: 1px solid var(--line-strong); padding: 8px 16px; border-radius: 100px;
+    text-decoration:none; color: var(--ink); white-space:nowrap;
+  }
+  .nav-cta:hover{ border-color: var(--gold); color: var(--gold); }
+
+  /* HERO */
+  .hero{
+    padding: 96px 0 72px;
+    display:grid; grid-template-columns: 1.15fr 0.85fr; gap: 56px; align-items:center;
+    border-bottom: 1px solid var(--line);
+  }
+  .hero h1{
+    font-family: var(--font-display); font-weight:700;
+    font-size: clamp(38px, 5vw, 58px); line-height:1.06; letter-spacing:-0.01em;
+    margin: 18px 0 22px;
+  }
+  .hero h1 em{
+    font-style: normal; color: var(--gold);
+  }
+  .hero p.sub{
+    font-size: 17px; color: var(--ink-muted); max-width: 480px; margin-bottom: 34px;
+  }
+  .hero-ctas{ display:flex; gap:14px; flex-wrap:wrap; }
+  .btn{
+    font-family: var(--font-mono); font-size: 13px; letter-spacing:0.02em;
+    padding: 13px 22px; border-radius: 8px; text-decoration:none; display:inline-flex; align-items:center; gap:8px;
+    transition: all .15s ease;
+  }
+  .btn-primary{ background: var(--gold); color: #0E1526; font-weight:600; }
+  .btn-primary:hover{ background:#f2b45a; transform: translateY(-1px); }
+  .btn-ghost{ border:1px solid var(--line-strong); color: var(--ink); }
+  .btn-ghost:hover{ border-color: var(--teal); color: var(--teal); }
+
+  /* CLOCK WIDGET */
+  .clock-card{
+    background: var(--bg-card);
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    padding: 28px;
+  }
+  .clock-card .label{
+    font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--ink-faint); margin-bottom: 18px;
+  }
+  .clock-row{
+    display:flex; justify-content: space-between; align-items:baseline;
+    padding: 14px 0; border-bottom: 1px solid var(--line);
+  }
+  .clock-row:last-of-type{ border-bottom:none; }
+  .clock-who{ font-size: 13.5px; color: var(--ink-muted); }
+  .clock-who strong{ color: var(--ink); font-weight:500; }
+  .clock-time{
+    font-family: var(--font-mono); font-size: 22px; font-weight:500; letter-spacing:0.01em;
+  }
+  .clock-time.you{ color: var(--teal); }
+  .clock-time.harsh{ color: var(--gold); }
+  .overlap-bar{
+    margin-top: 20px;
+  }
+  .overlap-track{
+    position:relative; height: 8px; border-radius: 100px; background: rgba(255,255,255,0.06); overflow:hidden;
+  }
+  .overlap-fill{
+    position:absolute; top:0; bottom:0; left:0;
+    background: linear-gradient(90deg, var(--teal), var(--gold));
+    border-radius: 100px;
+    width: 45%;
+  }
+  .overlap-caption{
+    margin-top:10px; font-size: 12.5px; color: var(--ink-faint); font-family: var(--font-mono);
+  }
+  .overlap-caption b{ color: var(--ink); font-weight:500; }
+
+  /* SECTION GENERIC */
+  section{ padding: 84px 0; border-bottom: 1px solid var(--line); }
+  section:last-of-type{ border-bottom:none; }
+  .section-head{ margin-bottom: 44px; }
+  .section-head h2{
+    font-family: var(--font-display); font-weight:600; font-size: clamp(26px,3vw,34px);
+    margin-top: 12px; letter-spacing:-0.01em;
+  }
+
+  /* ABOUT */
+  .about-grid{
+    display:grid; grid-template-columns: 1.3fr 1fr; gap: 56px; align-items:start;
+  }
+  .about-grid p{ color: var(--ink-muted); font-size: 15.5px; margin-bottom: 16px; max-width: 560px; }
+  .stat-list{ display:flex; flex-direction:column; gap:0; border: 1px solid var(--line); border-radius: 14px; overflow:hidden; }
+  .stat{
+    display:flex; justify-content:space-between; align-items:center; padding: 20px 22px;
+    border-bottom: 1px solid var(--line); background: var(--bg-card);
+  }
+  .stat:last-child{ border-bottom:none; }
+  .stat .num{ font-family: var(--font-mono); font-size:24px; color: var(--gold); font-weight:600; }
+  .stat .desc{ font-size: 13px; color: var(--ink-muted); text-align:right; max-width:180px; }
+
+  /* CASE STUDIES */
+  .case-grid{ display:grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
+  .case-card{
+    background: var(--bg-card); border:1px solid var(--line); border-radius: 14px; padding: 28px;
+    display:flex; flex-direction:column; gap:14px; transition: border-color .15s ease, transform .15s ease;
+  }
+  .case-card:hover{ border-color: var(--line-strong); transform: translateY(-2px); }
+  .case-tag{
+    font-family: var(--font-mono); font-size:11px; letter-spacing:0.08em; text-transform:uppercase;
+    color: var(--teal); background: var(--teal-soft); padding: 5px 10px; border-radius: 100px; width:fit-content;
+  }
+  .case-card h3{ font-family: var(--font-display); font-size: 18.5px; font-weight:600; line-height:1.3; }
+  .case-card p{ font-size: 14px; color: var(--ink-muted); flex-grow:1; }
+  .case-card .note{
+    font-family: var(--font-mono); font-size: 11.5px; color: var(--ink-faint); border-top: 1px solid var(--line);
+    padding-top: 12px; margin-top: 4px;
+  }
+
+  /* SKILLS */
+  .skills-grid{ display:grid; grid-template-columns: repeat(3, 1fr); gap: 32px; }
+  .skill-col .label{
+    font-family: var(--font-mono); font-size:11px; letter-spacing:0.1em; text-transform:uppercase;
+    color: var(--ink-faint); margin-bottom:14px;
+  }
+  .pill-row{ display:flex; flex-wrap:wrap; gap:8px; }
+  .pill{
+    font-size: 13px; padding: 7px 13px; border-radius: 100px; border: 1px solid var(--line-strong);
+    color: var(--ink-muted);
+  }
+
+  /* AVAILABILITY */
+  .avail{
+    background: var(--bg-card); border:1px solid var(--line); border-radius: 16px;
+    padding: 40px; display:grid; grid-template-columns: 1fr 1fr 1fr; gap: 30px;
+  }
+  .avail-item .icon{ color: var(--gold); font-family: var(--font-mono); font-size: 13px; margin-bottom: 10px; }
+  .avail-item h4{ font-family: var(--font-display); font-size: 16.5px; margin-bottom: 8px; font-weight:600; }
+  .avail-item p{ font-size: 13.5px; color: var(--ink-muted); }
+
+  /* CONTACT */
+  .contact-inner{
+    display:flex; justify-content:space-between; align-items:flex-end; flex-wrap:wrap; gap: 32px;
+  }
+  .contact-inner h2{
+    font-family: var(--font-display); font-weight:700; font-size: clamp(30px,4vw,44px); max-width:560px; line-height:1.12;
+  }
+  .contact-links{ display:flex; flex-direction:column; gap:10px; align-items:flex-end; }
+  .contact-links a{ text-decoration:none; font-family: var(--font-mono); font-size:14px; color: var(--ink-muted); }
+  .contact-links a:hover{ color: var(--gold); }
+
+  footer{ padding: 32px 0 48px; }
+  .footer-inner{
+    display:flex; justify-content:space-between; font-size: 12.5px; color: var(--ink-faint); font-family: var(--font-mono);
+    flex-wrap:wrap; gap:8px;
+  }
+
+  @media (max-width: 860px){
+    .hero{ grid-template-columns: 1fr; padding-top: 64px; }
+    .about-grid{ grid-template-columns: 1fr; }
+    .case-grid{ grid-template-columns: 1fr; }
+    .skills-grid{ grid-template-columns: 1fr 1fr; }
+    .avail{ grid-template-columns: 1fr; }
+    nav.links{ display:none; }
+    .contact-inner{ flex-direction:column; align-items:flex-start; }
+    .contact-links{ align-items:flex-start; }
+  }
+
+  :focus-visible{ outline: 2px solid var(--teal); outline-offset: 3px; }
+  @media (prefers-reduced-motion: reduce){ *{ transition:none !important; scroll-behavior:auto !important; } }
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="nav-inner">
+    <div class="brand">Harsh<span> Mayank </span>Modi</div>
+    <nav class="links">
+      <a href="#about">About</a>
+      <a href="#work">Case Studies</a>
+      <a href="#skills">Skills</a>
+      <a href="#availability">Availability</a>
+    </nav>
+    <a class="nav-cta" href="mailto:hmmodi152@gmail.com">Get in touch →</a>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <section class="hero" style="border-bottom:none;">
+    <div>
+      <p class="eyebrow">GROWTH MARKETER · IT FOUNDATION</p>
+      <h1>I turn customer signal into <em>growth strategy.</em></h1>
+      <p class="sub">I bring 2 years of direct, high-volume customer experience and a technical background to marketing and growth work — reading buyer behavior, diagnosing why a business is losing ground, and mapping the path back to growth.</p>
+      <div class="hero-ctas">
+        <a class="btn btn-primary" href="#work">View case studies</a>
+        <a class="btn btn-ghost" href="mailto:hmmodi152@gmail.com">Start a project</a>
+      </div>
+    </div>
+
+    <div class="clock-card">
+      <div class="label">Live availability</div>
+      <div class="clock-row">
+        <div class="clock-who">Your local time</div>
+        <div class="clock-time you" id="clockYou">--:--</div>
+      </div>
+      <div class="clock-row">
+        <div class="clock-who"><strong>Harsh</strong> · Jharkhand, India (IST)</div>
+        <div class="clock-time harsh" id="clockHarsh">--:--</div>
+      </div>
+      <div class="overlap-bar">
+        <div class="overlap-track"><div class="overlap-fill" id="overlapFill"></div></div>
+        <div class="overlap-caption" id="overlapCaption">Calculating working-hours overlap…</div>
+      </div>
+    </div>
+  </section>
+
+  <section id="about">
+    <div class="section-head">
+      <p class="eyebrow">ABOUT</p>
+      <h2>Sales floor instincts, applied to marketing.</h2>
+    </div>
+    <div class="about-grid">
+      <div>
+        <p>My background sits at the intersection of technical understanding and customer psychology. A Bachelor's in Information Technology taught me how software and data systems actually work — and two years on the front line of a high-volume sales and operations role taught me what makes people buy, hesitate, or walk away.</p>
+        <p>I use that ground-level insight the way a growth marketer uses funnel data: to find where interest breaks down, what messaging actually converts, and where the best partnership or channel opportunities are hiding. I've applied this thinking through independent case study work on partnership strategy — analyzing businesses losing customers and margin to competitive pressure and supply-channel disruption, and mapping realistic paths back to growth.</p>
+        <p>I'm CRM-fluent, comfortable in remote/async tools, and I pick up new marketing platforms quickly — I'd rather show up ready to contribute than need months of onboarding.</p>
+      </div>
+      <div class="stat-list">
+        <div class="stat"><div class="num">50+</div><div class="desc">Customer interactions handled end-to-end, daily</div></div>
+        <div class="stat"><div class="num">15+</div><div class="desc">Complex queries resolved per day, retention-first</div></div>
+        <div class="stat"><div class="num">100+</div><div class="desc">Mbps fiber — fully remote-ready infrastructure</div></div>
+        <div class="stat"><div class="num">3</div><div class="desc">Languages — English, Hindi, and German (learning)</div></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="work">
+    <div class="section-head">
+      <p class="eyebrow">SELECTED CASE STUDY WORK</p>
+      <h2>Diagnosing growth problems, finding the way back.</h2>
+    </div>
+    <div class="case-grid">
+      <div class="case-card">
+        <span class="case-tag">Partnership Strategy</span>
+        <h3>Partnership Recovery Under Competitive Pressure</h3>
+        <p>Independent case study analysis of a business losing customers and margin to market competition — identifying which partnership models could realistically rebuild volume and trust.</p>
+        <div class="note">Full write-up available on request</div>
+      </div>
+      <div class="case-card">
+        <span class="case-tag">Margin & Growth</span>
+        <h3>Profit Margin Comeback Planning</h3>
+        <p>Worked through the conditions that eroded a business's profit margins, then modeled the operational and partner changes needed to show real potential for a strong comeback.</p>
+        <div class="note">Full write-up available on request</div>
+      </div>
+      <div class="case-card">
+        <span class="case-tag">Supply & Channel</span>
+        <h3>Supply-Channel Realignment</h3>
+        <p>Assessed how disrupted supply channels contributed to customer loss, and evaluated which partners and channel shifts would best support renewed growth.</p>
+        <div class="note">Full write-up available on request</div>
+      </div>
+    </div>
+  </section>
+
+  <section id="skills">
+    <div class="section-head">
+      <p class="eyebrow">SKILLS & TOOLS</p>
+      <h2>What I bring to a marketing team.</h2>
+    </div>
+    <div class="skills-grid">
+      <div class="skill-col">
+        <div class="label">Core skills</div>
+        <div class="pill-row">
+          <span class="pill">Customer Insight</span>
+          <span class="pill">Growth Strategy</span>
+          <span class="pill">Partnership Analysis</span>
+          <span class="pill">Objection Handling</span>
+          <span class="pill">Active Listening</span>
+        </div>
+      </div>
+      <div class="skill-col">
+        <div class="label">Tools & platforms</div>
+        <div class="pill-row">
+          <span class="pill">HubSpot</span>
+          <span class="pill">Salesforce</span>
+          <span class="pill">Google Workspace</span>
+          <span class="pill">Slack</span>
+          <span class="pill">Zoom</span>
+        </div>
+      </div>
+      <div class="skill-col">
+        <div class="label">Languages</div>
+        <div class="pill-row">
+          <span class="pill">English — Professional</span>
+          <span class="pill">Hindi — Native</span>
+          <span class="pill">German — A2</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="availability">
+    <div class="section-head">
+      <p class="eyebrow">AVAILABILITY</p>
+      <h2>Set up to work with clients anywhere.</h2>
+    </div>
+    <div class="avail">
+      <div class="avail-item">
+        <div class="icon">// TIMEZONE</div>
+        <h4>Based in IST, built for overlap</h4>
+        <p>I structure my schedule around US and global business hours, so timezone is never a blocker for calls or real-time collaboration.</p>
+      </div>
+      <div class="avail-item">
+        <div class="icon">// INFRASTRUCTURE</div>
+        <h4>Fully remote-ready</h4>
+        <p>Dedicated quiet home office, 100+ Mbps fiber internet, and UPS power backup for consistent uptime.</p>
+      </div>
+      <div class="avail-item">
+        <div class="icon">// COMMUNICATION</div>
+        <h4>Async-friendly, always reachable</h4>
+        <p>Comfortable across Slack, Zoom, and Google Workspace, with a fast, disciplined communication style.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" style="border-bottom:none;">
+    <div class="contact-inner">
+      <h2>Let's find where your growth is stalling — and fix it.</h2>
+      <div class="contact-links">
+        <a href="mailto:hmmodi152@gmail.com">hmmodi152@gmail.com</a>
+        <a href="tel:+918797988771">+91 87979 88771</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap footer-inner">
+    <span>Harsh Mayank Modi — Jharkhand, India</span>
+    <span>Built for MarketerHire &amp; independent client work</span>
+  </div>
+</footer>
+
+<script>
+  function pad(n){ return n.toString().padStart(2,'0'); }
+
+  function updateClocks(){
+    const now = new Date();
+
+    // Viewer's local time
+    const youH = now.getHours(), youM = now.getMinutes();
+    document.getElementById('clockYou').textContent = pad(youH) + ':' + pad(youM);
+
+    // IST time (UTC+5:30)
+    const utc = now.getTime() + (now.getTimezoneOffset() * 60000);
+    const ist = new Date(utc + (5.5 * 3600000));
+    document.getElementById('clockHarsh').textContent = pad(ist.getHours()) + ':' + pad(ist.getMinutes());
+
+    // Overlap estimate: Harsh works flexibly, roughly 12:00–23:30 IST to cover US hours.
+    // Convert viewer's own offset to compare against that working window in viewer's local time.
+    const viewerOffsetMin = -now.getTimezoneOffset(); // e.g. UTC-5 => -300
+    const istOffsetMin = 330; // UTC+5:30
+    const diffMin = istOffsetMin - viewerOffsetMin; // minutes Harsh's clock is ahead of viewer's
+
+    const workStartIST = 12 * 60; // 12:00 IST
+    const workEndIST = 23 * 60 + 30; // 23:30 IST
+    const workStartLocal = ((workStartIST - diffMin) % 1440 + 1440) % 1440;
+    const workEndLocal = ((workEndIST - diffMin) % 1440 + 1440) % 1440;
+
+    function fmt(mins){
+      const h = Math.floor(mins/60), m = mins%60;
+      const ampm = h >= 12 ? 'PM' : 'AM';
+      let h12 = h % 12; if(h12===0) h12=12;
+      return h12 + (m ? ':' + pad(m) : '') + ampm;
+    }
+
+    document.getElementById('overlapCaption').innerHTML =
+      'Working window in your local time: <b>' + fmt(workStartLocal) + '–' + fmt(workEndLocal) + '</b>';
+
+    // Fill bar proportionally (rough visual, not to scale of a 24h clock)
+    document.getElementById('overlapFill').style.width = '62%';
+  }
+
+  updateClocks();
+  setInterval(updateClocks, 30000);
+</script>
+
+</body>
+</html>
