@@ -1,2 +1,2 @@
 # my-portfolio-of-strategy
-Starting New
+Starting New Business each day
